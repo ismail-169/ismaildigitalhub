@@ -108,8 +108,8 @@ document.addEventListener('DOMContentLoaded', function() {
             tagline: 'Building the future of decentralized infrastructure. Specializing in blockchain development, dApp creation, and cross-chain solutions.'
         },
         support: {
-            subtitle: 'Customer Support Specialist | Web3 & Trading Platform Support',
-            tagline: 'Combining technical expertise with exceptional support skills. Helping users navigate the complexities of Web3, crypto trading, and blockchain technology.'
+            subtitle: 'Customer Support Specialist | Trading Platforms & Prop Firm Support',
+            tagline: 'Expert in drawdown rules, platform troubleshooting (MT4/5, TradeLocker), and high-pressure trader support. Combining trading knowledge with technical expertise to deliver exceptional support for prop firms and trading platforms.'
         }
     };
 
