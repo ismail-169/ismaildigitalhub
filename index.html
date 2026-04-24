@@ -2,99 +2,239 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="description" content="Oganla Ismail — AI Data Trainer, Annotation Specialist, RLHF Evaluator. 95%+ accuracy, 3+ years remote.">
-    <title>Ismail Digital Hub | AI Data Trainer &amp; Annotation Specialist</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Oganla Ismail — AI Data Trainer, Annotation Specialist, RLHF Evaluator.">
+    <title>Ismail Digital Hub</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="alternate icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="cursor-glow" id="cursorGlow"></div>
-    <canvas id="bgCanvas"></canvas>
+    <div class="grain"></div>
 
-    <nav id="navbar">
+    <nav>
         <div class="nav-inner">
-            <a href="#" class="nav-logo">
-                <span class="logo-icon"></span>
-                <span>ISMAIL<span class="logo-dim">.digital</span></span>
+            <a href="#" class="logo">
+                <div class="logo-dot-wrap">
+                    <span class="logo-dot-ping"></span>
+                    <span class="logo-dot"></span>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-main">ISMAIL</span>
+                    <span class="logo-sep">/</span>
+                    <span class="logo-mid">DIGITAL</span>
+                    <span class="logo-sep">/</span>
+                    <span class="logo-end">HUB</span>
+                </div>
             </a>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#services">Services</a>
-                <a href="#experience">Experience</a>
-                <a href="#skills">Skills</a>
-                <a href="mailto:oganlaismail169@gmail.com" class="nav-cta">Hire Me</a>
+            <div class="nav-right">
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="mailto:oganlaismail169@gmail.com" class="nav-cta">Let's Talk</a>
             </div>
-            <button class="nav-toggle" id="navToggle" aria-label="Menu">
-                <span></span><span></span><span></span>
+            <button class="menu-btn" id="menuBtn" aria-label="Menu">
+                <span></span><span></span>
             </button>
         </div>
     </nav>
 
-    <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#work">Work</a>
         <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="mailto:oganlaismail169@gmail.com">Hire Me</a>
+        <a href="#contact">Contact</a>
+        <a href="mailto:oganlaismail169@gmail.com">Let's Talk</a>
     </div>
 
-    <section class="hero" id="hero">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                Available for work
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-top">
+                <span class="hero-tag mono">AI Data Trainer</span>
+                <span class="hero-avail"><span class="avail-dot"></span>Available Now</span>
             </div>
-            <h1 class="hero-name">
-                <span class="line" data-delay="0">Oganla Ismail</span>
-                <span class="line accent" data-delay="1">Oladipupo</span>
+            <h1 class="hero-heading">
+                <span class="h-line"><span class="h-word">I train AI</span></span>
+                <span class="h-line"><span class="h-word">models to</span></span>
+                <span class="h-line"><span class="h-word accent">think better.</span></span>
             </h1>
-            <div class="hero-title">
-                <span id="typingText"></span><span class="cursor-blink">|</span>
-            </div>
-            <p class="hero-desc">
-                I train AI models through RLHF evaluation, data annotation, code review, and prompt engineering. 3+ years building structured datasets and quality-controlled labeling pipelines. 95%+ accuracy across all projects.
-            </p>
-            <div class="hero-actions">
-                <a href="mailto:oganlaismail169@gmail.com" class="btn btn-primary">
-                    <span>Get in Touch</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </a>
-                <a href="https://github.com/ismail-169" target="_blank" class="btn btn-ghost">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    <span>GitHub</span>
+            <div class="hero-bottom">
+                <p class="hero-desc">RLHF evaluation, data annotation, code review, and prompt engineering. 3+ years building structured datasets with 95%+ accuracy.</p>
+                <a href="#work" class="hero-arrow" aria-label="Scroll down">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
                 </a>
             </div>
-        </div>
-        <div class="hero-scroll">
-            <div class="scroll-line"></div>
-            <span>Scroll</span>
         </div>
     </section>
 
-    <section class="stats" id="stats">
+    <div class="marquee">
+        <div class="marquee-track">
+            <span>RLHF Evaluation</span>
+            <span class="marquee-dot"></span>
+            <span>Data Annotation</span>
+            <span class="marquee-dot"></span>
+            <span>Code Review</span>
+            <span class="marquee-dot"></span>
+            <span>Prompt Engineering</span>
+            <span class="marquee-dot"></span>
+            <span>AI Training</span>
+            <span class="marquee-dot"></span>
+            <span>Quality Control</span>
+            <span class="marquee-dot"></span>
+            <span>Hallucination Detection</span>
+            <span class="marquee-dot"></span>
+            <span>Red Teaming</span>
+            <span class="marquee-dot"></span>
+            <span>RLHF Evaluation</span>
+            <span class="marquee-dot"></span>
+            <span>Data Annotation</span>
+            <span class="marquee-dot"></span>
+            <span>Code Review</span>
+            <span class="marquee-dot"></span>
+            <span>Prompt Engineering</span>
+            <span class="marquee-dot"></span>
+            <span>AI Training</span>
+            <span class="marquee-dot"></span>
+            <span>Quality Control</span>
+            <span class="marquee-dot"></span>
+            <span>Hallucination Detection</span>
+            <span class="marquee-dot"></span>
+            <span>Red Teaming</span>
+            <span class="marquee-dot"></span>
+        </div>
+    </div>
+
+    <section class="numbers">
         <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item" data-target="3333" data-suffix="+">
-                    <span class="stat-number">0</span>
-                    <span class="stat-label">Items Annotated</span>
+            <div class="numbers-grid">
+                <div class="num-item" data-target="3333" data-suffix="+">
+                    <span class="num-val">0</span>
+                    <span class="num-label">Items Annotated</span>
                 </div>
-                <div class="stat-item" data-target="95" data-suffix="%+">
-                    <span class="stat-number">0</span>
-                    <span class="stat-label">Accuracy Rate</span>
+                <div class="num-item" data-target="95" data-suffix="%">
+                    <span class="num-val">0</span>
+                    <span class="num-label">Accuracy Rate</span>
                 </div>
-                <div class="stat-item" data-target="3" data-suffix="+ Years">
-                    <span class="stat-number">0</span>
-                    <span class="stat-label">Remote Experience</span>
+                <div class="num-item" data-target="3" data-suffix="+">
+                    <span class="num-val">0</span>
+                    <span class="num-label">Years Remote</span>
                 </div>
-                <div class="stat-item" data-target="50000" data-suffix="+">
-                    <span class="stat-number">0</span>
-                    <span class="stat-label">Data Blocks Parsed</span>
+                <div class="num-item" data-target="50" data-suffix="K+">
+                    <span class="num-val">0</span>
+                    <span class="num-label">Blocks Parsed</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="work" id="work">
+        <div class="container">
+            <div class="sec-head">
+                <span class="sec-num mono">01</span>
+                <h2 class="sec-title">What I Do</h2>
+            </div>
+            <div class="bento">
+                <div class="bento-card bento-wide" data-reveal>
+                    <span class="card-num mono">01</span>
+                    <h3>RLHF and AI Training</h3>
+                    <p>AI response evaluation, ranking, and preference labeling. Chatbot quality rating, hallucination detection, red teaming, and prompt-response quality assessment for large language models.</p>
+                </div>
+                <div class="bento-card" data-reveal>
+                    <span class="card-num mono">02</span>
+                    <h3>Code Evaluation</h3>
+                    <p>Reviewing AI-generated code for correctness, efficiency, and style in Python, JavaScript, TypeScript, Solidity, and AssemblyScript.</p>
+                </div>
+                <div class="bento-card" data-reveal>
+                    <span class="card-num mono">03</span>
+                    <h3>Prompt Engineering</h3>
+                    <p>Building and refining prompts for LLM systems (Claude, Grok, GPT). Iterative optimization and structured response tuning.</p>
+                </div>
+                <div class="bento-card" data-reveal>
+                    <span class="card-num mono">04</span>
+                    <h3>Data Annotation</h3>
+                    <p>Text labeling, entity recognition, sentiment classification, intent tagging, bounding box annotation, image classification, and metadata generation.</p>
+                </div>
+                <div class="bento-card bento-wide" data-reveal>
+                    <span class="card-num mono">05</span>
+                    <h3>AI Agent Development</h3>
+                    <p>Built AI-powered production systems using LLM APIs (Claude, Grok, GPT). Structured output parsing, iterative prompt refinement, and response quality tuning for deployed agents.</p>
+                </div>
+                <div class="bento-card" data-reveal>
+                    <span class="card-num mono">06</span>
+                    <h3>Quality Control</h3>
+                    <p>Automated QC workflows, validation rules, accuracy monitoring. 95%+ accuracy across all projects. Clean, model-ready data at scale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="exp" id="exp">
+        <div class="container">
+            <div class="sec-head">
+                <span class="sec-num mono">02</span>
+                <h2 class="sec-title">Experience</h2>
+            </div>
+            <div class="exp-list">
+                <div class="exp-row" data-reveal>
+                    <div class="exp-left">
+                        <span class="exp-date mono">2024 — Now</span>
+                        <span class="exp-co">Freelance</span>
+                    </div>
+                    <div class="exp-right">
+                        <h3>AI Data Training and Annotation Specialist</h3>
+                        <ul>
+                            <li>Created and annotated 3,333 structured dataset items with trait classification across 6 categories</li>
+                            <li>Built automated quality control pipelines enforcing validation rules across large datasets</li>
+                            <li>Evaluated and ranked AI-generated text and code outputs for correctness and quality</li>
+                            <li>Built AI agent systems using LLM APIs with prompt engineering and iterative refinement</li>
+                            <li>Code review across Python, JavaScript, TypeScript, and Solidity</li>
+                            <li>Maintained 95%+ accuracy across all annotation and labeling tasks</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="exp-row" data-reveal>
+                    <div class="exp-left">
+                        <span class="exp-date mono">2023 — Now</span>
+                        <span class="exp-co">Independent</span>
+                    </div>
+                    <div class="exp-right">
+                        <h3>Full Stack Developer and Data Pipeline Engineer</h3>
+                        <ul>
+                            <li>Built production applications processing structured listings with multi-field classification</li>
+                            <li>Designed PostgreSQL schemas with validation constraints for 10,000+ item collections</li>
+                            <li>Developed automated indexer parsing and classifying data across 50,000+ blocks in real time</li>
+                            <li>Created admin systems with 23 endpoints for data management and content moderation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="exp-row" data-reveal>
+                    <div class="exp-left">
+                        <span class="exp-date mono">2022 — 2023</span>
+                        <span class="exp-co">Gatsby Tools</span>
+                    </div>
+                    <div class="exp-right">
+                        <h3>Quality Assurance and Operations Specialist</h3>
+                        <ul>
+                            <li>Processed 50-60 daily tickets with under 2 minute response times</li>
+                            <li>Created standardized documentation templates and classification frameworks</li>
+                            <li>Pattern recognition and anomaly detection across reported issues</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="exp-row" data-reveal>
+                    <div class="exp-left">
+                        <span class="exp-date mono">2024 — 2025</span>
+                        <span class="exp-co">Web3 Projects</span>
+                    </div>
+                    <div class="exp-right">
+                        <h3>Data Collection and Verification Lead</h3>
+                        <ul>
+                            <li>Managed 700+ submissions requiring verification, deduplication, and standardization</li>
+                            <li>Built structured databases with multi-criteria validation for eligibility screening</li>
+                            <li>Data quality audits under launch conditions with zero error tolerance</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -102,261 +242,32 @@
 
     <section class="about" id="about">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">01 / About</span>
-                <h2>AI data trainer and annotation specialist</h2>
+            <div class="sec-head">
+                <span class="sec-num mono">03</span>
+                <h2 class="sec-title">About</h2>
             </div>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>AI data trainer and annotation specialist with a B.Eng in Mechanical Engineering and hands-on experience in software development. I train AI models through RLHF evaluation, response ranking, code review, prompt engineering, and structured data labeling.</p>
-                    <p>I have annotated and curated 3,333+ structured dataset items with trait classification, built automated quality control pipelines, and evaluated AI-generated text and code for correctness and quality. My technical background in Python, JavaScript, TypeScript, and SQL means I understand how labeled data flows into ML pipelines and what quality standards models need to perform.</p>
-                    <p>Comfortable working across annotation platforms, following complex guidelines, and delivering consistent results under tight deadlines.</p>
-                    <p>95%+ accuracy across all projects. 3+ years working independently in remote teams across time zones. Available for RLHF evaluation, data annotation, code review, AI training, and prompt engineering roles.</p>
+            <div class="about-layout">
+                <div class="about-col-text" data-reveal>
+                    <p class="about-lead">AI data trainer with an engineering mind. I build the datasets that make models smarter.</p>
+                    <p>B.Eng in Mechanical Engineering. 3+ years working remotely across time zones. I have annotated and curated 3,333+ structured dataset items, built automated QC pipelines, and evaluated AI-generated text and code for correctness.</p>
+                    <p>My technical background in Python, JavaScript, TypeScript, and SQL means I understand how labeled data flows into ML pipelines and what quality standards models need to perform.</p>
                 </div>
-                <div class="about-details">
-                    <div class="detail-row">
-                        <span class="detail-label">Location</span>
-                        <span class="detail-value">Nigeria (WAT/GMT+1)</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Education</span>
-                        <span class="detail-value">B.Eng Mechanical Engineering</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Availability</span>
-                        <span class="detail-value">Immediate start, flexible hours</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Payment</span>
-                        <span class="detail-value">Payoneer, PayPal, Wise, Deel</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Work Style</span>
-                        <span class="detail-value">Remote, async, self-directed</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">02 / Services</span>
-                <h2>What I do</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-card" data-tilt>
-                    <div class="service-num">01</div>
-                    <h3>RLHF and AI Training</h3>
-                    <p>AI response evaluation, ranking, and preference labeling. Chatbot quality rating, hallucination detection, red teaming, and prompt-response quality assessment for large language models.</p>
-                </div>
-                <div class="service-card" data-tilt>
-                    <div class="service-num">02</div>
-                    <h3>Code Evaluation</h3>
-                    <p>Reviewing AI-generated code for correctness, efficiency, and style in Python, JavaScript, TypeScript, Solidity, and AssemblyScript. Bug identification, logic reasoning, and ground-truth solutions.</p>
-                </div>
-                <div class="service-card" data-tilt>
-                    <div class="service-num">03</div>
-                    <h3>Prompt Engineering</h3>
-                    <p>Building and refining prompts for LLM systems (Claude, Grok, GPT). Iterative prompt optimization, output quality evaluation, and structured response tuning for AI agent workflows.</p>
-                </div>
-                <div class="service-card" data-tilt>
-                    <div class="service-num">04</div>
-                    <h3>Data Annotation</h3>
-                    <p>Text labeling, entity recognition, sentiment classification, intent tagging, document layout analysis, bounding box annotation, key-value extraction, image classification, and metadata generation.</p>
-                </div>
-                <div class="service-card" data-tilt>
-                    <div class="service-num">05</div>
-                    <h3>AI Agent Development</h3>
-                    <p>Built AI-powered systems using LLM APIs (Claude, Grok, GPT). Hands-on experience with structured output parsing, iterative prompt refinement, and response quality tuning for production agents.</p>
-                </div>
-                <div class="service-card" data-tilt>
-                    <div class="service-num">06</div>
-                    <h3>Quality Control Pipelines</h3>
-                    <p>Automated QC workflows, validation rules, accuracy monitoring, and data integrity checks. 95%+ accuracy across all projects. I deliver clean, model-ready data at scale.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="experience" id="experience">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">03 / Experience</span>
-                <h2>Where I have worked</h2>
-            </div>
-            <div class="timeline">
-                <div class="timeline-line"></div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-meta">
-                            <span class="timeline-date">2024 - Present</span>
-                            <span class="timeline-company">Freelance</span>
+                <div class="about-col-info" data-reveal>
+                    <div class="info-block">
+                        <h4>Skills</h4>
+                        <div class="tag-cloud">
+                            <span>RLHF</span><span>Prompt Engineering</span><span>Code Review</span><span>Red Teaming</span><span>Fact-Checking</span><span>Text Labeling</span><span>Entity Recognition</span><span>Sentiment Analysis</span><span>Image Classification</span><span>Bounding Boxes</span><span>Python</span><span>JavaScript</span><span>TypeScript</span><span>SQL</span><span>Solidity</span><span>PostgreSQL</span><span>Git</span><span>Linux</span>
                         </div>
-                        <h3>AI Data Training and Annotation Specialist</h3>
-                        <ul>
-                            <li>Created and annotated 3,333 structured dataset items with trait classification across 6 categories, attribute tagging, and visual quality scoring</li>
-                            <li>Built automated quality control pipelines enforcing validation rules across large datasets</li>
-                            <li>Evaluated and ranked AI-generated text and code outputs for correctness and quality</li>
-                            <li>Built AI agent systems using LLM APIs (Claude, Grok, GPT) with prompt engineering, output evaluation, and iterative refinement</li>
-                            <li>Performed code review across Python, JavaScript, TypeScript, and Solidity for logic errors, efficiency, and style</li>
-                            <li>Parsed and labeled complex technical documents including smart contract ABIs, API specs, and protocol documentation</li>
-                            <li>Maintained 95%+ accuracy across all annotation and labeling tasks</li>
-                        </ul>
                     </div>
-                </div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-meta">
-                            <span class="timeline-date">2023 - Present</span>
-                            <span class="timeline-company">Independent / Contract</span>
+                    <div class="info-block">
+                        <h4>Details</h4>
+                        <div class="info-rows">
+                            <div class="ir"><span>Location</span><span>Nigeria (GMT+1)</span></div>
+                            <div class="ir"><span>Education</span><span>B.Eng Mechanical</span></div>
+                            <div class="ir"><span>Availability</span><span>Immediate</span></div>
+                            <div class="ir"><span>Payment</span><span>Payoneer / Wise / Deel</span></div>
                         </div>
-                        <h3>Full Stack Developer and Data Pipeline Engineer</h3>
-                        <ul>
-                            <li>Built production applications processing structured listings with multi-field classification and search indexing</li>
-                            <li>Designed PostgreSQL schemas with validation constraints for 10,000+ item collections</li>
-                            <li>Developed automated indexer parsing and classifying data across 50,000+ blocks in real time</li>
-                            <li>Created admin systems with 23 endpoints for data management and content moderation</li>
-                            <li>Deployed multi-service cloud architectures with monitoring</li>
-                        </ul>
                     </div>
-                </div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-meta">
-                            <span class="timeline-date">2022 - 2023</span>
-                            <span class="timeline-company">Gatsby Tools</span>
-                        </div>
-                        <h3>Quality Assurance and Operations Specialist</h3>
-                        <ul>
-                            <li>Processed 50 to 60 daily tickets with under 2 minute response times</li>
-                            <li>Created standardized documentation templates and classification frameworks</li>
-                            <li>Performed pattern recognition and anomaly detection across reported issues</li>
-                            <li>Maintained structured operational logs for trend analysis</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="timeline-item reveal">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-meta">
-                            <span class="timeline-date">2024 - 2025</span>
-                            <span class="timeline-company">Web3 Projects</span>
-                        </div>
-                        <h3>Data Collection and Verification Lead</h3>
-                        <ul>
-                            <li>Managed data collection of 700+ submissions requiring verification, deduplication, and format standardization</li>
-                            <li>Built structured databases with multi-criteria validation for eligibility screening</li>
-                            <li>Performed data quality audits under launch conditions with zero error tolerance</li>
-                            <li>Created datasets from on-chain data requiring address validation and cross-referencing</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="skills" id="skills">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">04 / Skills</span>
-                <h2>Technical toolkit</h2>
-            </div>
-            <div class="skills-columns">
-                <div class="skill-group reveal">
-                    <h4>AI Training</h4>
-                    <div class="skill-tags">
-                        <span class="tag">RLHF Evaluation</span>
-                        <span class="tag">AI Response Ranking</span>
-                        <span class="tag">Prompt Engineering</span>
-                        <span class="tag">Code Review</span>
-                        <span class="tag">Fact-Checking</span>
-                        <span class="tag">Hallucination Detection</span>
-                        <span class="tag">Chatbot Evaluation</span>
-                        <span class="tag">Red Teaming</span>
-                    </div>
-                </div>
-                <div class="skill-group reveal">
-                    <h4>Annotation and Data</h4>
-                    <div class="skill-tags">
-                        <span class="tag">Text Labeling</span>
-                        <span class="tag">Entity Recognition</span>
-                        <span class="tag">Sentiment Classification</span>
-                        <span class="tag">Intent Tagging</span>
-                        <span class="tag">Document Layout Analysis</span>
-                        <span class="tag">Bounding Box Annotation</span>
-                        <span class="tag">Image Classification</span>
-                        <span class="tag">Key-Value Extraction</span>
-                        <span class="tag">Metadata Generation</span>
-                        <span class="tag">Quality Assurance</span>
-                    </div>
-                </div>
-                <div class="skill-group reveal">
-                    <h4>Programming</h4>
-                    <div class="skill-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">TypeScript</span>
-                        <span class="tag">Solidity</span>
-                        <span class="tag">AssemblyScript</span>
-                        <span class="tag">SQL</span>
-                    </div>
-                </div>
-                <div class="skill-group reveal">
-                    <h4>Tools and Platforms</h4>
-                    <div class="skill-tags">
-                        <span class="tag">PostgreSQL</span>
-                        <span class="tag">REST APIs</span>
-                        <span class="tag">Git / GitHub</span>
-                        <span class="tag">Linux</span>
-                        <span class="tag">Railway</span>
-                        <span class="tag">Google Workspace</span>
-                        <span class="tag">Slack</span>
-                        <span class="tag">Discord</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="values" id="values">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">05 / Why Me</span>
-                <h2>Why work with me</h2>
-            </div>
-            <div class="values-grid">
-                <div class="value-card reveal" data-tilt>
-                    <h4>Engineering Precision</h4>
-                    <p>B.Eng in Mechanical Engineering combined with full-stack development experience. I approach annotation with the same precision I bring to writing production code — systematic, accurate, and consistent at scale.</p>
-                </div>
-                <div class="value-card reveal" data-tilt>
-                    <h4>I Understand ML Pipelines</h4>
-                    <p>I don't just label data. As a developer who builds systems that consume structured data, I understand how annotation quality directly impacts model performance. Every label I apply is informed by that context.</p>
-                </div>
-                <div class="value-card reveal" data-tilt>
-                    <h4>Proven at Volume</h4>
-                    <p>Track record processing 50-60 daily tasks with consistent quality, creating 3,000+ annotated items, and managing databases with thousands of structured records. I maintain accuracy above 95% regardless of volume.</p>
-                </div>
-                <div class="value-card reveal" data-tilt>
-                    <h4>Self-Directed and Reliable</h4>
-                    <p>3+ years working independently in remote, async teams across time zones. I follow complex guidelines precisely, flag edge cases proactively, and deliver on time without supervision.</p>
-                </div>
-                <div class="value-card reveal" data-tilt>
-                    <h4>AI-Native Workflow</h4>
-                    <p>Hands-on experience building AI agent systems with LLM APIs (Claude, Grok, GPT). I understand prompt engineering, output evaluation, and model behavior from the inside out.</p>
-                </div>
-                <div class="value-card reveal" data-tilt>
-                    <h4>Flexible and Available</h4>
-                    <p>Available full-time or part-time with flexible hours and immediate start. Equipped with personal hardware, stable internet, and accounts on Payoneer, PayPal, and Wise for seamless payments.</p>
                 </div>
             </div>
         </div>
@@ -364,17 +275,14 @@
 
     <section class="contact" id="contact">
         <div class="container">
-            <div class="contact-box">
-                <h2>Let's work together</h2>
-                <p>Looking for a reliable annotation specialist or AI training contributor? I am available for projects of any size.</p>
+            <div class="contact-inner" data-reveal>
+                <span class="sec-num mono">04</span>
+                <h2 class="contact-heading">Got a project?<br><span class="accent">Let's talk.</span></h2>
                 <div class="contact-links">
-                    <a href="mailto:oganlaismail169@gmail.com" class="btn btn-primary btn-lg">
-                        <span>oganlaismail169@gmail.com</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </a>
-                    <div class="contact-secondary">
+                    <a href="mailto:oganlaismail169@gmail.com" class="contact-big">oganlaismail169@gmail.com</a>
+                    <div class="contact-row">
                         <a href="https://github.com/ismail-169" target="_blank" class="contact-pill">GitHub</a>
-                        <a href="https://x.com/gingerfarmer666" target="_blank" class="contact-pill">@gingerfarmer666</a>
+                        <a href="https://x.com/gingerfarmer666" target="_blank" class="contact-pill">X / Twitter</a>
                     </div>
                 </div>
             </div>
@@ -382,15 +290,15 @@
     </section>
 
     <footer>
-        <div class="container">
-            <span>&copy; 2026 Ismail Digital Hub</span>
+        <div class="container footer-inner">
+            <span class="mono">&copy; 2026</span>
+            <span>Ismail Digital Hub</span>
         </div>
     </footer>
 
-    <button class="scroll-top" id="scrollTopBtn">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
-    </button>
-
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

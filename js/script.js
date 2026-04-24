@@ -1,229 +1,191 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const isMobile = window.innerWidth <= 768;
-
-    // ── INTERACTIVE DOT GRID BACKGROUND ──
-    const canvas = document.getElementById('bgCanvas');
-    const ctx = canvas.getContext('2d');
-    let w, h, dots = [], mouse = { x: -1000, y: -1000 };
-    const SPACING = isMobile ? 40 : 30;
-    const DOT_R = 1;
-    const INTERACT_R = isMobile ? 0 : 150;
-
-    function initCanvas() {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-        dots = [];
-        for (let x = 0; x < w; x += SPACING) {
-            for (let y = 0; y < h; y += SPACING) {
-                dots.push({ ox: x, oy: y, x: x, y: y });
-            }
-        }
+    // ── LENIS SMOOTH SCROLL ──
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+        smooth: true
+    });
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
     }
+    requestAnimationFrame(raf);
 
-    function drawDots() {
-        ctx.clearRect(0, 0, w, h);
-        for (let i = 0; i < dots.length; i++) {
-            const d = dots[i];
-            const dx = mouse.x - d.ox;
-            const dy = mouse.y - d.oy;
-            const dist = Math.sqrt(dx * dx + dy * dy);
+    // ── GSAP + SCROLLTRIGGER ──
+    gsap.registerPlugin(ScrollTrigger);
 
-            if (INTERACT_R > 0 && dist < INTERACT_R) {
-                const force = (1 - dist / INTERACT_R) * 12;
-                d.x = d.ox - (dx / dist) * force;
-                d.y = d.oy - (dy / dist) * force;
-            } else {
-                d.x += (d.ox - d.x) * 0.1;
-                d.y += (d.oy - d.y) * 0.1;
-            }
+    // Update ScrollTrigger on Lenis scroll
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
 
-            const alpha = INTERACT_R > 0 && dist < INTERACT_R
-                ? 0.15 + (1 - dist / INTERACT_R) * 0.5
-                : 0.08;
+    // ── HERO TEXT REVEAL ──
+    gsap.to('.h-word', {
+        y: 0,
+        duration: 1.2,
+        ease: 'power4.out',
+        stagger: 0.12,
+        delay: 0.3
+    });
+    gsap.from('.hero-top', { opacity: 0, y: 20, duration: 0.8, delay: 0.1, ease: 'power3.out' });
+    gsap.from('.hero-bottom', { opacity: 0, y: 30, duration: 0.8, delay: 0.9, ease: 'power3.out' });
 
-            ctx.beginPath();
-            ctx.arc(d.x, d.y, DOT_R, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(124, 58, 237, ${alpha})`;
-            ctx.fill();
-        }
-        requestAnimationFrame(drawDots);
-    }
-
-    initCanvas();
-    drawDots();
-    window.addEventListener('resize', initCanvas);
-
-    if (!isMobile) {
-        document.addEventListener('mousemove', function (e) {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
+    // ── SCROLL-TRIGGERED REVEALS ──
+    var reveals = document.querySelectorAll('[data-reveal]');
+    reveals.forEach(function (el, i) {
+        gsap.from(el, {
+            scrollTrigger: {
+                trigger: el,
+                start: 'top 88%',
+                toggleActions: 'play none none none'
+            },
+            opacity: 0,
+            y: 40,
+            duration: 0.8,
+            ease: 'power3.out',
+            delay: (i % 3) * 0.1
         });
-    }
+    });
 
-    // ── CURSOR GLOW ──
-    if (!isMobile) {
-        const glow = document.getElementById('cursorGlow');
-        let gx = 0, gy = 0, cx = 0, cy = 0;
-        document.addEventListener('mousemove', function (e) {
-            gx = e.clientX;
-            gy = e.clientY;
+    // ── BENTO CARDS STAGGER ──
+    gsap.utils.toArray('.bento-card').forEach(function (card) {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 90%'
+            },
+            opacity: 0,
+            y: 50,
+            duration: 0.7,
+            ease: 'power3.out'
         });
-        function animateGlow() {
-            cx += (gx - cx) * 0.08;
-            cy += (gy - cy) * 0.08;
-            glow.style.left = cx + 'px';
-            glow.style.top = cy + 'px';
-            requestAnimationFrame(animateGlow);
-        }
-        animateGlow();
-    }
+    });
 
-    // ── NAV SCROLL ──
-    const nav = document.getElementById('navbar');
-    window.addEventListener('scroll', function () {
-        nav.classList.toggle('scrolled', window.scrollY > 50);
+    // ── EXP ROWS SLIDE ──
+    gsap.utils.toArray('.exp-row').forEach(function (row) {
+        gsap.from(row, {
+            scrollTrigger: {
+                trigger: row,
+                start: 'top 88%'
+            },
+            opacity: 0,
+            x: -30,
+            duration: 0.7,
+            ease: 'power3.out'
+        });
+    });
+
+    // ── NUMBER COUNTERS ──
+    var numItems = document.querySelectorAll('.num-item');
+    numItems.forEach(function (item) {
+        var target = parseInt(item.dataset.target);
+        var suffix = item.dataset.suffix || '';
+        var numEl = item.querySelector('.num-val');
+
+        ScrollTrigger.create({
+            trigger: item,
+            start: 'top 85%',
+            once: true,
+            onEnter: function () {
+                gsap.to({ val: 0 }, {
+                    val: target,
+                    duration: 2,
+                    ease: 'power2.out',
+                    onUpdate: function () {
+                        var v = Math.floor(this.targets()[0].val);
+                        numEl.textContent = v.toLocaleString() + suffix;
+                    }
+                });
+            }
+        });
+    });
+
+    // ── MARQUEE SPEED ON SCROLL ──
+    var marqueeTrack = document.querySelector('.marquee-track');
+    ScrollTrigger.create({
+        trigger: '.marquee',
+        start: 'top bottom',
+        end: 'bottom top',
+        onUpdate: function (self) {
+            var speed = 30 + Math.abs(self.getVelocity()) / 200;
+            marqueeTrack.style.animationDuration = Math.max(8, 30 - speed * 0.3) + 's';
+        }
+    });
+
+    // ── NAV SCROLL STATE ──
+    var nav = document.querySelector('nav');
+    ScrollTrigger.create({
+        start: 'top -80',
+        onUpdate: function (self) {
+            nav.style.borderBottomColor = self.progress > 0 ? '#222' : 'transparent';
+            nav.style.background = self.progress > 0 ? 'rgba(12,12,12,0.9)' : 'rgba(12,12,12,0.7)';
+        }
     });
 
     // ── MOBILE MENU ──
-    const toggle = document.getElementById('navToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    toggle.addEventListener('click', function () {
-        mobileMenu.classList.toggle('open');
+    var menuBtn = document.getElementById('menuBtn');
+    var mobileNav = document.getElementById('mobileNav');
+    menuBtn.addEventListener('click', function () {
+        menuBtn.classList.toggle('open');
+        mobileNav.classList.toggle('open');
     });
-    mobileMenu.querySelectorAll('a').forEach(function (a) {
+    mobileNav.querySelectorAll('a').forEach(function (a) {
         a.addEventListener('click', function () {
-            mobileMenu.classList.remove('open');
+            menuBtn.classList.remove('open');
+            mobileNav.classList.remove('open');
         });
     });
 
-    // ── TYPING EFFECT ──
-    const titles = [
-        'AI Data Trainer',
-        'Annotation Specialist',
-        'RLHF Evaluator',
-        'Code Reviewer',
-        'Prompt Engineer'
-    ];
-    const typingEl = document.getElementById('typingText');
-    let titleIdx = 0, charIdx = 0, isDeleting = false;
-
-    function type() {
-        const current = titles[titleIdx];
-        if (isDeleting) {
-            charIdx--;
-            typingEl.textContent = current.substring(0, charIdx);
-            if (charIdx === 0) {
-                isDeleting = false;
-                titleIdx = (titleIdx + 1) % titles.length;
-                setTimeout(type, 500);
-                return;
-            }
-            setTimeout(type, 40);
-        } else {
-            charIdx++;
-            typingEl.textContent = current.substring(0, charIdx);
-            if (charIdx === current.length) {
-                isDeleting = true;
-                setTimeout(type, 2000);
-                return;
-            }
-            setTimeout(type, 80);
-        }
-    }
-    setTimeout(type, 1000);
-
-    // ── STAT COUNTERS ──
-    let statsCounted = false;
-    const statsSection = document.getElementById('stats');
-
-    function formatNumber(n) {
-        if (n >= 1000) return (n / 1000).toFixed(n % 1000 === 0 ? 0 : 1) + 'K';
-        return n.toString();
-    }
-
-    function countUp() {
-        if (statsCounted) return;
-        statsCounted = true;
-        document.querySelectorAll('.stat-item').forEach(function (item) {
-            const target = parseInt(item.dataset.target);
-            const suffix = item.dataset.suffix || '';
-            const numEl = item.querySelector('.stat-number');
-            const duration = 2000;
-            const start = performance.now();
-
-            function update(now) {
-                const elapsed = now - start;
-                const progress = Math.min(elapsed / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 3);
-                const current = Math.floor(eased * target);
-                numEl.textContent = formatNumber(current) + suffix;
-                if (progress < 1) requestAnimationFrame(update);
-            }
-            requestAnimationFrame(update);
-        });
-    }
-
-    // ── SCROLL REVEALS ──
-    const observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry, index) {
-            if (entry.isIntersecting) {
-                if (entry.target === statsSection) {
-                    countUp();
-                }
-                setTimeout(function () {
-                    entry.target.classList.add('visible');
-                }, index * 80);
-            }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-
-    document.querySelectorAll('.reveal').forEach(function (el) { observer.observe(el); });
-    observer.observe(statsSection);
-
-    // also observe service cards & skill groups for stagger
-    document.querySelectorAll('.service-card, .skill-group, .value-card, .timeline-item').forEach(function (el) {
-        if (!el.classList.contains('reveal')) {
-            el.classList.add('reveal');
-            observer.observe(el);
-        }
-    });
-
-    // ── 3D TILT ON CARDS ──
-    if (!isMobile) {
-        document.querySelectorAll('[data-tilt]').forEach(function (card) {
-            card.addEventListener('mousemove', function (e) {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -5;
-                const rotateY = ((x - centerX) / centerX) * 5;
-                card.style.transform = 'perspective(800px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-4px)';
-            });
-            card.addEventListener('mouseleave', function () {
-                card.style.transform = '';
-            });
-        });
-    }
-
-    // ── SCROLL TO TOP ──
-    const scrollBtn = document.getElementById('scrollTopBtn');
-    window.addEventListener('scroll', function () {
-        scrollBtn.classList.toggle('show', window.pageYOffset > 400);
-    });
-    scrollBtn.addEventListener('click', function () {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // ── SMOOTH NAV LINKS ──
+    // ── SMOOTH ANCHOR LINKS ──
     document.querySelectorAll('a[href^="#"]').forEach(function (a) {
         a.addEventListener('click', function (e) {
-            const target = document.querySelector(this.getAttribute('href'));
+            var target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                lenis.scrollTo(target, { offset: -80 });
             }
         });
+    });
+
+    // ── MAGNETIC HOVER ON CARDS (desktop) ──
+    if (window.innerWidth > 768) {
+        document.querySelectorAll('.bento-card, .contact-big, .hero-arrow').forEach(function (el) {
+            el.addEventListener('mousemove', function (e) {
+                var rect = el.getBoundingClientRect();
+                var x = e.clientX - rect.left - rect.width / 2;
+                var y = e.clientY - rect.top - rect.height / 2;
+                gsap.to(el, {
+                    x: x * 0.08,
+                    y: y * 0.08,
+                    duration: 0.4,
+                    ease: 'power2.out'
+                });
+            });
+            el.addEventListener('mouseleave', function () {
+                gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.5)' });
+            });
+        });
+    }
+
+    // ── TAG CLOUD SHUFFLE ON HOVER ──
+    document.querySelectorAll('.tag-cloud span').forEach(function (tag) {
+        tag.addEventListener('mouseenter', function () {
+            gsap.to(tag, { scale: 1.08, duration: 0.2, ease: 'power2.out' });
+        });
+        tag.addEventListener('mouseleave', function () {
+            gsap.to(tag, { scale: 1, duration: 0.3, ease: 'elastic.out(1, 0.5)' });
+        });
+    });
+
+    // ── PARALLAX ON NUMBERS ──
+    gsap.to('.numbers-grid', {
+        scrollTrigger: {
+            trigger: '.numbers',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1
+        },
+        y: -30,
+        ease: 'none'
     });
 });
